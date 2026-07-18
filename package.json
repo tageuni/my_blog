@@ -1,0 +1,9 @@
+{
+  "name": "my_blog",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Markdown files to a static blog site, built with vanilla HTML/CSS/JS.",
+  "scripts": {
+    "build": "node build/build.js"
+  }
+}
