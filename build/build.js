@@ -83,18 +83,14 @@ function writeFile(filePath, contents) {
   fs.writeFileSync(filePath, contents, 'utf8');
 }
 
+const STATIC_ASSET_DIRS = ['styles', 'scripts', 'games', 'tools'];
+
 function copyStaticAssets() {
-  const stylesSrc = path.join(SRC_DIR, 'styles');
-  const scriptsSrc = path.join(SRC_DIR, 'scripts');
-  const gamesSrc = path.join(SRC_DIR, 'games');
-  if (fs.existsSync(stylesSrc)) {
-    fs.cpSync(stylesSrc, path.join(DIST_DIR, 'styles'), { recursive: true });
-  }
-  if (fs.existsSync(scriptsSrc)) {
-    fs.cpSync(scriptsSrc, path.join(DIST_DIR, 'scripts'), { recursive: true });
-  }
-  if (fs.existsSync(gamesSrc)) {
-    fs.cpSync(gamesSrc, path.join(DIST_DIR, 'games'), { recursive: true });
+  for (const dirName of STATIC_ASSET_DIRS) {
+    const src = path.join(SRC_DIR, dirName);
+    if (fs.existsSync(src)) {
+      fs.cpSync(src, path.join(DIST_DIR, dirName), { recursive: true });
+    }
   }
 }
 
