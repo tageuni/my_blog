@@ -45,6 +45,11 @@ function layout({ title, description, bodyHtml, basePath, nav, siteTitle, active
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%93%9D</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="${basePath}/styles/main.css">
 <script>
 (function () {
@@ -63,7 +68,7 @@ function layout({ title, description, bodyHtml, basePath, nav, siteTitle, active
     <div class="site-header-actions">
       <div class="search-box">
         <input type="search" id="search-input" placeholder="검색..." aria-label="글 검색">
-        <ul id="search-results" class="search-results" hidden></ul>
+        <ul id="search-results" class="search-results" aria-live="polite" hidden></ul>
       </div>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">🌓</button>
     </div>

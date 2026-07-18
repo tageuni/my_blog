@@ -124,6 +124,14 @@ function parseBlocks(lines) {
   return blocks;
 }
 
+// Blocks link/image URLs using script-executing schemes (e.g. `javascript:`)
+// so a post body can't turn `[text](javascript:...)` into a clickable XSS payload.
+const DANGEROUS_URL_SCHEME_RE = /^\s*(javascript|vbscript|data):/i;
+
+function sanitizeUrl(url) {
+  return DANGEROUS_URL_SCHEME_RE.test(url) ? '#' : url;
+}
+
 /**
  * Pass 2: convert inline Markdown within a block's text to HTML.
  * Already-produced HTML fragments (code spans, links, images, bold,
@@ -149,12 +157,12 @@ function parseInline(rawText) {
 
   // Images before links - overlapping syntax, images use a leading "!".
   text = text.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, alt, url) =>
-    stashHtml(`<img src="${url}" alt="${alt}">`)
+    stashHtml(`<img src="${sanitizeUrl(url)}" alt="${alt}">`)
   );
 
   // Links.
   text = text.replace(/\[([^\]]*)\]\(([^)\s]+)\)/g, (_, label, url) =>
-    stashHtml(`<a href="${url}">${label}</a>`)
+    stashHtml(`<a href="${sanitizeUrl(url)}">${label}</a>`)
   );
 
   // Bold (must run before italic so ** isn't partially consumed by the single-* rule).
