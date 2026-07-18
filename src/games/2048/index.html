@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2048 - My Blog</title>
+<meta name="description" content="방향키로 숫자 타일을 밀어 합치는 2048 게임">
+<link rel="stylesheet" href="../../styles/main.css">
+<link rel="stylesheet" href="style.css">
+<script>
+(function () {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'light' || saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', saved);
+  }
+})();
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-title" href="../../">My Blog</a>
+    <nav class="site-nav">
+      <a class="nav-link" href="../../">홈</a>
+      <a class="nav-link" href="../../tags/">태그</a>
+      <a class="nav-link is-active" href="../../games/2048/">2048</a>
+    </nav>
+    <div class="site-header-actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">🌓</button>
+    </div>
+  </div>
+</header>
+<main class="site-main game-2048-main">
+  <section class="game-2048">
+    <div class="game-2048-header">
+      <h1>2048</h1>
+      <div class="score-board">
+        <div class="score-box">
+          <span class="score-label">SCORE</span>
+          <span id="score-current">0</span>
+        </div>
+        <div class="score-box">
+          <span class="score-label">BEST</span>
+          <span id="score-best">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="game-2048-controls">
+      <p class="game-2048-help">방향키 또는 스와이프로 타일을 밀어 합치세요.</p>
+      <button id="new-game-btn" class="new-game-btn" type="button">새 게임</button>
+    </div>
+    <div class="board-wrapper">
+      <div id="board-grid" class="board-grid"></div>
+      <div id="tile-layer" class="tile-layer"></div>
+      <div id="game-overlay" class="game-overlay" hidden>
+        <p id="game-overlay-text"></p>
+        <div class="game-overlay-actions">
+          <button id="overlay-keep-playing-btn" class="overlay-btn" type="button" hidden>계속하기</button>
+          <button id="overlay-retry-btn" class="overlay-btn" type="button">새 게임</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>&copy; 2026 My Blog</p>
+</footer>
+<script src="../../scripts/theme-toggle.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

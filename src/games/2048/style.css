@@ -1,0 +1,261 @@
+:root {
+  --tile-2-bg: #eee4da;    --tile-2-text: #776e65;
+  --tile-4-bg: #ede0c8;    --tile-4-text: #776e65;
+  --tile-8-bg: #f2b179;    --tile-8-text: #f9f6f2;
+  --tile-16-bg: #f59563;   --tile-16-text: #f9f6f2;
+  --tile-32-bg: #f67c5f;   --tile-32-text: #f9f6f2;
+  --tile-64-bg: #f65e3b;   --tile-64-text: #f9f6f2;
+  --tile-128-bg: #edcf72;  --tile-128-text: #f9f6f2;
+  --tile-256-bg: #edcc61;  --tile-256-text: #f9f6f2;
+  --tile-512-bg: #edc850;  --tile-512-text: #f9f6f2;
+  --tile-1024-bg: #edc53f; --tile-1024-text: #f9f6f2;
+  --tile-2048-bg: #edc22e; --tile-2048-text: #f9f6f2;
+  --tile-super-bg: #3c3a32; --tile-super-text: #f9f6f2;
+  --tile-empty-bg: var(--bg-subtle);
+}
+
+/* prefers-color-scheme와 [data-theme] 두 곳에 같은 값을 중복 정의하는 이유는
+   main.css가 이미 그렇게 하고 있어서 (수동 토글이 매체 쿼리를 오버라이드해야 함) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tile-2-bg: #3a3630;    --tile-2-text: #e8e8e8;
+    --tile-4-bg: #4a4230;    --tile-4-text: #e8e8e8;
+    --tile-8-bg: #a85f2e;    --tile-8-text: #f9f6f2;
+    --tile-16-bg: #ad5a2c;   --tile-16-text: #f9f6f2;
+    --tile-32-bg: #b04a2c;   --tile-32-text: #f9f6f2;
+    --tile-64-bg: #b33a1f;   --tile-64-text: #f9f6f2;
+    --tile-128-bg: #a68a3f;  --tile-128-text: #f9f6f2;
+    --tile-256-bg: #a68736;  --tile-256-text: #f9f6f2;
+    --tile-512-bg: #a6842c;  --tile-512-text: #f9f6f2;
+    --tile-1024-bg: #a68123; --tile-1024-text: #f9f6f2;
+    --tile-2048-bg: #a67e18; --tile-2048-text: #f9f6f2;
+    --tile-super-bg: #16181c; --tile-super-text: #f9f6f2;
+  }
+}
+
+:root[data-theme='dark'] {
+  --tile-2-bg: #3a3630;    --tile-2-text: #e8e8e8;
+  --tile-4-bg: #4a4230;    --tile-4-text: #e8e8e8;
+  --tile-8-bg: #a85f2e;    --tile-8-text: #f9f6f2;
+  --tile-16-bg: #ad5a2c;   --tile-16-text: #f9f6f2;
+  --tile-32-bg: #b04a2c;   --tile-32-text: #f9f6f2;
+  --tile-64-bg: #b33a1f;   --tile-64-text: #f9f6f2;
+  --tile-128-bg: #a68a3f;  --tile-128-text: #f9f6f2;
+  --tile-256-bg: #a68736;  --tile-256-text: #f9f6f2;
+  --tile-512-bg: #a6842c;  --tile-512-text: #f9f6f2;
+  --tile-1024-bg: #a68123; --tile-1024-text: #f9f6f2;
+  --tile-2048-bg: #a67e18; --tile-2048-text: #f9f6f2;
+  --tile-super-bg: #16181c; --tile-super-text: #f9f6f2;
+}
+
+:root[data-theme='light'] {
+  --tile-2-bg: #eee4da;    --tile-2-text: #776e65;
+  --tile-4-bg: #ede0c8;    --tile-4-text: #776e65;
+  --tile-8-bg: #f2b179;    --tile-8-text: #f9f6f2;
+  --tile-16-bg: #f59563;   --tile-16-text: #f9f6f2;
+  --tile-32-bg: #f67c5f;   --tile-32-text: #f9f6f2;
+  --tile-64-bg: #f65e3b;   --tile-64-text: #f9f6f2;
+  --tile-128-bg: #edcf72;  --tile-128-text: #f9f6f2;
+  --tile-256-bg: #edcc61;  --tile-256-text: #f9f6f2;
+  --tile-512-bg: #edc850;  --tile-512-text: #f9f6f2;
+  --tile-1024-bg: #edc53f; --tile-1024-text: #f9f6f2;
+  --tile-2048-bg: #edc22e; --tile-2048-text: #f9f6f2;
+  --tile-super-bg: #3c3a32; --tile-super-text: #f9f6f2;
+}
+
+.game-2048-main {
+  display: flex;
+  justify-content: center;
+}
+
+.game-2048 {
+  width: 100%;
+  max-width: 480px;
+}
+
+.game-2048-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.game-2048-header h1 {
+  margin: 0;
+}
+
+.score-board {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.score-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  text-align: center;
+  min-width: 4.5rem;
+}
+
+.score-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.score-box span:last-child {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.game-2048-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.game-2048-help {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.new-game-btn,
+.overlay-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.new-game-btn:hover,
+.overlay-btn:hover {
+  opacity: 0.9;
+}
+
+.board-wrapper {
+  position: relative;
+  width: min(90vw, 480px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  touch-action: none;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: clamp(0.4rem, 2vw, 0.75rem);
+  width: 100%;
+  height: 100%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(0.4rem, 2vw, 0.75rem);
+  box-sizing: border-box;
+}
+
+.board-cell {
+  background: var(--tile-empty-bg);
+  border-radius: 6px;
+}
+
+.tile-layer {
+  position: absolute;
+  inset: 0;
+  padding: clamp(0.4rem, 2vw, 0.75rem);
+  box-sizing: border-box;
+}
+
+.tile {
+  position: absolute;
+  width: calc(25% - clamp(0.4rem, 2vw, 0.75rem) * 3 / 4);
+  height: calc(25% - clamp(0.4rem, 2vw, 0.75rem) * 3 / 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: clamp(1rem, 5vw, 1.8rem);
+  transition: top 120ms ease, left 120ms ease;
+  background: var(--tile-2-bg);
+  color: var(--tile-2-text);
+}
+
+.tile-2 { background: var(--tile-2-bg); color: var(--tile-2-text); }
+.tile-4 { background: var(--tile-4-bg); color: var(--tile-4-text); }
+.tile-8 { background: var(--tile-8-bg); color: var(--tile-8-text); }
+.tile-16 { background: var(--tile-16-bg); color: var(--tile-16-text); }
+.tile-32 { background: var(--tile-32-bg); color: var(--tile-32-text); }
+.tile-64 { background: var(--tile-64-bg); color: var(--tile-64-text); }
+.tile-128 { background: var(--tile-128-bg); color: var(--tile-128-text); font-size: clamp(0.9rem, 4.5vw, 1.6rem); }
+.tile-256 { background: var(--tile-256-bg); color: var(--tile-256-text); font-size: clamp(0.9rem, 4.5vw, 1.6rem); }
+.tile-512 { background: var(--tile-512-bg); color: var(--tile-512-text); font-size: clamp(0.9rem, 4.5vw, 1.6rem); }
+.tile-1024 { background: var(--tile-1024-bg); color: var(--tile-1024-text); font-size: clamp(0.75rem, 4vw, 1.3rem); }
+.tile-2048 { background: var(--tile-2048-bg); color: var(--tile-2048-text); font-size: clamp(0.75rem, 4vw, 1.3rem); }
+.tile-super { background: var(--tile-super-bg); color: var(--tile-super-text); font-size: clamp(0.75rem, 4vw, 1.3rem); }
+
+@keyframes tile-pop {
+  0% { transform: scale(0.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.tile-new,
+.tile-merged {
+  animation: tile-pop 150ms ease;
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(20, 22, 26, 0.55);
+  border-radius: 8px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.game-overlay[hidden] {
+  display: none;
+}
+
+#game-overlay-text {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.game-overlay-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+@media (max-width: 600px) {
+  .game-2048-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .game-2048-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}

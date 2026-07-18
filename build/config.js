@@ -11,5 +11,6 @@ module.exports = {
   nav: [
     { label: '홈', href: '/' },
     { label: '태그', href: '/tags/' },
+    { label: '2048', href: '/games/2048/' },
   ],
 };

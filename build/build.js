@@ -86,11 +86,15 @@ function writeFile(filePath, contents) {
 function copyStaticAssets() {
   const stylesSrc = path.join(SRC_DIR, 'styles');
   const scriptsSrc = path.join(SRC_DIR, 'scripts');
+  const gamesSrc = path.join(SRC_DIR, 'games');
   if (fs.existsSync(stylesSrc)) {
     fs.cpSync(stylesSrc, path.join(DIST_DIR, 'styles'), { recursive: true });
   }
   if (fs.existsSync(scriptsSrc)) {
     fs.cpSync(scriptsSrc, path.join(DIST_DIR, 'scripts'), { recursive: true });
+  }
+  if (fs.existsSync(gamesSrc)) {
+    fs.cpSync(gamesSrc, path.join(DIST_DIR, 'games'), { recursive: true });
   }
 }
 
